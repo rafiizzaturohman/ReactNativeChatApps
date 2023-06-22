@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    Containers: {
+    setLogInContainers: {
         flex: 1,
         justifyContent: 'center',
         paddingHorizontal: 30,

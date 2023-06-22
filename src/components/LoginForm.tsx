@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 import { GestureResponderEvent, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { styles } from "../styles/styles";
+import { request } from "../helpers/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { InternalAxiosRequestConfig } from "axios";
 import { NavigationProp } from "@react-navigation/native";
 import socket from "../socket";
-import { request } from "../helpers/api";
+import { styles } from "../styles/styles";
 
 interface LoginFormProps {
     navigation: NavigationProp<any>;
@@ -49,7 +49,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ navigation }) => {
     const handleChange = (name: string) => setUserName(name)
 
     return (
-        <View style={styles.Containers}>
+        <View style={styles.setLogInContainers}>
             <View
                 style={styles.loginContainer}
             >

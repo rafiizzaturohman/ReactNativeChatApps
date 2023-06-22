@@ -8,7 +8,7 @@ import ChatBody from './ChatBody';
 import socket from '../socket';
 import { styles } from '../styles/styles';
 
-export default function ChatForm({ navigation }) {
+const ChatForm = ({ navigation }) => {
     const dispatch = useDispatch()
     const [dataUsername, setDataUsername] = useState(null)
     const [chat, setChat] = useState(false)
@@ -87,3 +87,5 @@ export default function ChatForm({ navigation }) {
 }
 
 
+
+export default ChatForm;
