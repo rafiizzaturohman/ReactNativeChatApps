@@ -31,7 +31,7 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
             setData(parseJsonData);
         }
         parseDATA();
-    }, []);
+    });
 
     const deleteMessage = () => {
         props.delete();
@@ -40,7 +40,7 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
 
     if (props.sent === true && props.id === data?.id) {
         return (
-            <TouchableNativeFeedback>
+            <TouchableNativeFeedback onLongPress={() => setShowModal(true)}>
                 <View>
                     <View>
                         <Text style={{
@@ -77,7 +77,7 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
                     </Modal>
                 </View>
             </TouchableNativeFeedback>
-        );
+        )
     } else if (props.sent === false && data?.sender === data?.id) {
         return (
             <View>
@@ -86,29 +86,31 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
                         <Icon name="sync" size={20} color="#cbd5e1" />
 
                         <Text>{props.chat}</Text>
-                        <View>
-                            <View>
-                                <Text>{props.date}</Text>
 
-                                <Icon name="time-outline" />
-                            </View>
+                        <View>
+                            <Text>{props.date}</Text>
+
+                            <Icon name="time-outline" />
                         </View>
                     </TouchableOpacity>
                 </View>
             </View>
         );
     } else {
-        return data?.sender === props.receiver ? (
-            <View>
+        return (
+            data?.sender === props.receiver ?
                 <View>
-                    <Text>{props.chat}</Text>
-
                     <View>
-                        <Text>{props.date}</Text>
+                        <Text style={{ color: 'black' }}>{props.chat}</Text>
+
+                        <View>
+                            <Text>{props.date}</Text>
+                        </View>
                     </View>
                 </View>
-            </View>
-        ) : null;
+                :
+                null
+        )
     }
 };
 
