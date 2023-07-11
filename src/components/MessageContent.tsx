@@ -9,6 +9,7 @@ import {
     View,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface MessageContentProps {
     sent: boolean;
