@@ -22,7 +22,7 @@ interface MessageContentProps {
 }
 
 const MessageContent: React.FC<MessageContentProps> = (props) => {
-    const [data, setData] = useState<{ id: string; sender: string } | null>(null);
+    const [data, setData] = useState<{ _id: string; id: string; sender: string } | null>(null);
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
@@ -52,15 +52,24 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
                     <View>
                         <Text>{props.date}</Text>
                         {props.readstatus === true ? (
-                            <Icon name="checkmark-done-outline" size={20} color="#cbd5e1" />
+                            <Icon name="check" size={20} color="black" />
                         ) : (
-                            <Icon name="checkmark-done-outline" size={20} color="#14b8a6" />
+                            <Icon name="check" size={20} color="white" />
                         )}
                     </View>
 
                     <Modal visible={showModal}>
-                        <View>
-                            <Text>Are you sure want to delete this chat?</Text>
+                        <View style={{
+                            backgroundColor: '#BACDDB',
+                            flex: 1,
+                            marginHorizontal: 100,
+                            marginVertical: 100,
+                        }}>
+                            <Text style={{
+                                textAlign: 'center',
+                                fontSize: 16,
+                                marginVertical: 10
+                            }}>Are you sure want to delete this chat?</Text>
 
                             <View style={styles.ButtonStyle}>
                                 <View style={styles.ModalButton}>
@@ -68,7 +77,7 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
                                         <Text>Delete</Text>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={() => setShowModal(false)}>
                                         <Text>Cancel</Text>
                                     </TouchableOpacity>
                                 </View>
@@ -85,7 +94,11 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
                     <TouchableOpacity>
                         <Icon name="sync" size={20} color="#cbd5e1" />
 
-                        <Text>{props.chat}</Text>
+                        <Text style={{
+                            color: '#000',
+                            fontSize: 16,
+                            textAlign: 'left'
+                        }}>{props.chat}</Text>
 
                         <View>
                             <Text>{props.date}</Text>
@@ -101,10 +114,14 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
             data?.sender === props.receiver ?
                 <View>
                     <View>
-                        <Text style={{ color: 'black' }}>{props.chat}</Text>
+                        <Text style={{
+                            color: '#000',
+                            fontSize: 16,
+                            textAlign: 'left'
+                        }}>{props.chat}</Text>
 
                         <View>
-                            <Text>{props.date}</Text>
+                            <Text style={{ textAlign: 'right' }}>{props.date}</Text>
                         </View>
                     </View>
                 </View>
@@ -118,9 +135,9 @@ export default MessageContent;
 
 const styles = StyleSheet.create({
     ModalButton: {
-        flex: 1,
-        justifyContent: "space-evenly",
-        alignItems: "center",
+        // flex: 1,
+        // justifyContent: "space-evenly",
+        // alignItems: "center",
     },
     ButtonStyle: {},
     containerSender: {

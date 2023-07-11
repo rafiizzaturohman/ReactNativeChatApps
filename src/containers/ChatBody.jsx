@@ -2,39 +2,38 @@ import React, { PureComponent, useEffect, useMemo, useRef } from "react"; ``
 import {
     FlatList,
     KeyboardAvoidingView,
-    StyleSheet,
     Text,
     TextInput,
     TouchableOpacity,
     View
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { addChat, loadChat, resendChat } from "../actions/chats";
+import { addChat, loadChat, removeChat, resendChat } from "../actions/chats";
 import Icon from "react-native-vector-icons/FontAwesome";
 import MessageContent from "../components/MessageContent";
 import { styles } from "../styles/styles";
 
-// class MemorizedMessageContents extends PureComponent {
-//     render() {
-//         const { chat, id, receiver, sent, date, readstatus, deleteMessage, resendMessage } = this.props
+class MemorizedMessageContents extends PureComponent {
+    render() {
+        const { chat, id, receiver, sent, date, readstatus, deleteMessage, resendMessage } = this.props
 
-//         return (
-//             <MessageContent
-//                 chat={chat}
-//                 id={id}
-//                 receiver={receiver}
-//                 sent={sent}
-//                 date={date}
-//                 readstatus={readstatus}
-//                 deleteMessage={deleteMessage}
-//                 resendMessage={resendMessage}
-//             />
-//         );
-//     };
-// };
+        return (
+            <MessageContent
+                chat={chat}
+                id={id}
+                receiver={receiver}
+                sent={sent}
+                date={date}
+                readstatus={readstatus}
+                delete={deleteMessage}
+                resend={resendMessage}
+            />
+        );
+    };
+};
 
 const ChatBody = (props) => {
-    const selected = useSelector((state) => state.chats.selectedChat)
+    const selected = useSelector((state) => state.chats.data)
     const dispatch = useDispatch()
     const messagesListRef = useRef(null)
 
@@ -53,8 +52,8 @@ const ChatBody = (props) => {
     }
 
     const chatRender = useMemo(() => {
-        return ({ item }) => {
-            <MessageContent
+        return ({ item }) => (
+            <MemorizedMessageContents
                 chat={item.message}
                 id={item.sender}
                 receiver={item.receiver}
@@ -64,7 +63,7 @@ const ChatBody = (props) => {
                 deleteMessage={() => dispatch(removeChat(item._id, props.name))}
                 resendMessage={() => resendMessage(item._id, item.message, props.name)}
             />
-        }
+        )
     }, [dispatch, props.name])
 
     return (
