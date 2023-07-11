@@ -22,7 +22,7 @@ interface MessageContentProps {
 }
 
 const MessageContent: React.FC<MessageContentProps> = (props) => {
-    const [data, setData] = useState<{ _id: string; id: string; sender: string } | null>(null);
+    const [data, setData] = useState<{ id: string, sender: string } | null>(null);
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
@@ -38,10 +38,19 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
         setShowModal(false)
     };
 
+    const resendMessage = () => {
+        props.resend();
+    };
+
     if (props.sent === true && props.id === data?.id) {
         return (
             <TouchableNativeFeedback onLongPress={() => setShowModal(true)}>
-                <View>
+                <View style={{
+                    marginVertical: 8,
+                    borderRadius: 10,
+                    paddingHorizontal: 10,
+                    paddingVertical: 8,
+                }}>
                     <View>
                         <Text style={{
                             color: '#000',
@@ -49,37 +58,81 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
                             textAlign: 'right',
                         }}>{props.chat}</Text>
                     </View>
-                    <View>
-                        <Text>{props.date}</Text>
+
+                    <View style={{
+                        flexDirection: 'row'
+                    }}>
                         {props.readstatus === true ? (
                             <Icon name="check" size={20} color="black" />
                         ) : (
                             <Icon name="check" size={20} color="white" />
                         )}
+
+                        <Text style={{ marginLeft: 6 }}>{props.date}</Text>
                     </View>
 
                     <Modal visible={showModal}>
                         <View style={{
-                            backgroundColor: '#BACDDB',
                             flex: 1,
-                            marginHorizontal: 100,
-                            marginVertical: 100,
+                            justifyContent: 'center',
+                            paddingHorizontal: 40,
                         }}>
-                            <Text style={{
-                                textAlign: 'center',
-                                fontSize: 16,
-                                marginVertical: 10
-                            }}>Are you sure want to delete this chat?</Text>
+                            <View style={{
+                                backgroundColor: '#BACDDB',
+                                height: '20%',
+                                borderRadius: 10,
+                                borderWidth: 1
+                            }}>
+                                <View style={{
+                                    height: '100%',
+                                    width: '100%',
+                                    paddingVertical: 20,
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                }}>
+                                    <Text style={{
+                                        textAlign: 'center',
+                                        color: 'black',
+                                        fontSize: 20
+                                    }}>Are you sure want to delete this?  chat?</Text>
 
-                            <View style={styles.ButtonStyle}>
-                                <View style={styles.ModalButton}>
-                                    <TouchableOpacity onPress={deleteMessage}>
-                                        <Text>Delete</Text>
-                                    </TouchableOpacity>
+                                    <View style={styles.ModalButton}>
+                                        <TouchableOpacity style={{
+                                            height: 40,
+                                            width: '18%',
+                                            borderWidth: 1,
+                                            borderRadius: 10,
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            backgroundColor: '#be123c',
+                                            marginVertical: 8,
+                                            marginHorizontal: 5
+                                        }} onPress={deleteMessage}>
+                                            <Text style={{
+                                                textAlign: 'center',
+                                                color: 'white',
+                                                fontSize: 18,
+                                            }}>Delete</Text>
+                                        </TouchableOpacity>
 
-                                    <TouchableOpacity onPress={() => setShowModal(false)}>
-                                        <Text>Cancel</Text>
-                                    </TouchableOpacity>
+                                        <TouchableOpacity style={{
+                                            height: 40,
+                                            width: '18%',
+                                            borderWidth: 1,
+                                            borderRadius: 10,
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            backgroundColor: '#0f766e',
+                                            marginVertical: 8,
+                                            marginHorizontal: 5
+                                        }} onPress={() => setShowModal(false)}>
+                                            <Text style={{
+                                                textAlign: 'center',
+                                                color: 'white',
+                                                fontSize: 16,
+                                            }}>Cancel</Text>
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
                             </View>
                         </View>
@@ -91,19 +144,19 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
         return (
             <View>
                 <View>
-                    <TouchableOpacity>
-                        <Icon name="sync" size={20} color="#cbd5e1" />
+                    <TouchableOpacity onPress={resendMessage}>
+                        <Icon name="arrow-circle-right" size={20} color="#cbd5e1" />
 
                         <Text style={{
                             color: '#000',
                             fontSize: 16,
-                            textAlign: 'left'
+                            textAlign: 'right'
                         }}>{props.chat}</Text>
 
                         <View>
-                            <Text>{props.date}</Text>
+                            <Icon name="time" size={20} />
 
-                            <Icon name="time-outline" />
+                            <Text>{props.date}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -112,7 +165,13 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
     } else {
         return (
             data?.sender === props.receiver ?
-                <View>
+                <View style={{
+                    marginVertical: 8,
+                    borderWidth: 1,
+                    borderRadius: 10,
+                    paddingHorizontal: 10,
+                    paddingVertical: 8,
+                }}>
                     <View>
                         <Text style={{
                             color: '#000',
@@ -135,11 +194,13 @@ export default MessageContent;
 
 const styles = StyleSheet.create({
     ModalButton: {
-        // flex: 1,
-        // justifyContent: "space-evenly",
-        // alignItems: "center",
+        flexDirection: 'row',
+        justifyContent: "flex-end",
+        marginVertical: 10
     },
-    ButtonStyle: {},
+    ButtonStyle: {
+        paddingHorizontal: 10,
+    },
     containerSender: {
         alignSelf: "flex-end",
         flexDirection: "row",

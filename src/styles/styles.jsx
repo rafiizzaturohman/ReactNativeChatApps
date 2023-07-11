@@ -96,9 +96,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 16,
         paddingVertical: 16,
         position: 'absolute',
-        bottom: 0,
-        right: 0,
-        left: 0,
+        bottom: 0
     },
     messageInputField: {
         flex: 1,
@@ -130,8 +128,7 @@ export const styles = StyleSheet.create({
     },
     messageContent: {
         flex: 1,
-        padding: 16,
-        marginBottom: 70
+        paddingHorizontal: 16,
     },
     receiverName: {
         fontWeight: 'bold',
