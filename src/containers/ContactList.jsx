@@ -4,7 +4,7 @@ import { loadContact, removeNotification } from '../actions/contacts';
 import { selectedChat } from '../actions/chats';
 import { request } from '../helpers/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Button, FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import ContactItem from '../components/ContactItem';
 import { styles } from '../styles/styles';
 

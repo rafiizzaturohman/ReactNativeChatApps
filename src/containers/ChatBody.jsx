@@ -1,4 +1,4 @@
-import React, { PureComponent, useEffect, useMemo, useRef } from "react";
+import React, { PureComponent, useEffect, useMemo, useRef } from "react"; ``
 import {
     FlatList,
     KeyboardAvoidingView,
@@ -12,27 +12,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { addChat, loadChat, resendChat } from "../actions/chats";
 import Icon from "react-native-vector-icons/FontAwesome";
 import MessageContent from "../components/MessageContent";
+import { styles } from "../styles/styles";
 
-class MessageContents extends PureComponent {
-    render() {
-        const {
-            chat, id, receiver, sent, date, readstatus, deleteMessage, resendMessage
-        } = this.props
+// class MemorizedMessageContents extends PureComponent {
+//     render() {
+//         const { chat, id, receiver, sent, date, readstatus, deleteMessage, resendMessage } = this.props
 
-        return (
-            <MessageContent
-                chat={chat}
-                id={id}
-                receiver={receiver}
-                sent={sent}
-                date={date}
-                readstatus={readstatus}
-                deleteMessage={deleteMessage}
-                resendMessage={resendMessage}
-            />
-        );
-    };
-};
+//         return (
+//             <MessageContent
+//                 chat={chat}
+//                 id={id}
+//                 receiver={receiver}
+//                 sent={sent}
+//                 date={date}
+//                 readstatus={readstatus}
+//                 deleteMessage={deleteMessage}
+//                 resendMessage={resendMessage}
+//             />
+//         );
+//     };
+// };
 
 const ChatBody = (props) => {
     const selected = useSelector((state) => state.chats.selectedChat)
@@ -53,9 +52,9 @@ const ChatBody = (props) => {
         props.setMessage('')
     }
 
-    const renderItem = useMemo(() => {
+    const chatRender = useMemo(() => {
         return ({ item }) => {
-            <MessageContents
+            <MessageContent
                 chat={item.message}
                 id={item.sender}
                 receiver={item.receiver}
@@ -73,69 +72,35 @@ const ChatBody = (props) => {
             behavior={Platform.OS == "android" ? "padding" : "height"}
             keyboardVerticalOffset={Platform.OS == "android" ? 0 : 25}
             enabled={Platform.OS === "android" ? true : false}
-            style={{
-                flex: 1,
-                backgroundColor: '#f2f2f2',
-            }}
+            style={styles.chatContainer}
         >
-            <View style={{ flexDirection: 'row', backgroundColor: '#317873', alignItems: 'center' }}>
+            <View style={styles.chatTopBar}>
                 <TouchableOpacity onPress={props.back} style={{ marginHorizontal: 18 }}>
-                    <Icon name="arrow-left" size={35} color='white' />
+                    <Icon name="arrow-left" size={20} color='white' />
                 </TouchableOpacity>
 
-                <Text style={{ fontWeight: 'bold', fontSize: 18, color: 'white' }}>
+                <Text style={styles.receiverName}>
                     {props.name}
                 </Text>
             </View>
 
-            <View style={{
-                flex: 1,
-                padding: 16,
-                marginBottom: 70
-            }}>
+            <View style={styles.messageContent}>
                 <FlatList
                     ref={messagesListRef}
                     data={selected}
-                    renderItem={renderItem}
+                    renderItem={chatRender}
                     keyExtractor={(item) => item._id}
                     onEndReachedThreshold={0.5}
                     onContentSizeChange={() => messagesListRef.current.scrollToEnd({ animated: false })}
                 />
             </View>
 
-            <View style={{
-                borderTopWidth: 0.5,
-                backgroundColor: '#e2e8f0',
-                flexDirection: 'row',
-                alignItems: 'center',
-                paddingHorizontal: 16,
-                paddingVertical: 16,
-                position: 'absolute',
-                bottom: 0,
-                right: 0,
-                left: 0,
-            }}>
+            <View style={styles.messageInputContainer}>
                 <TextInput onChangeText={message => props.setMessage(message)} placeholder="Write a message here" defaultValue={props.message}
-                    style={{
-                        flex: 1,
-                        marginRight: 8,
-                        paddingHorizontal: 20,
-                        paddingVertical: 11,
-                        backgroundColor: '#fff',
-                        borderRadius: 15,
-                        borderWidth: 1,
-                        borderColor: '#ddd',
-                    }} />
+                    style={styles.messageInputField} />
 
-                <TouchableOpacity onPress={submitChat} style={{
-                    borderRadius: 30,
-                    width: 50,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: "#00A693",
-                    height: 50
-                }}>
-                    <Icon name="rocket" size={30} color='black' />
+                <TouchableOpacity onPress={submitChat} style={styles.messageSend}>
+                    <Icon name="paper-plane" size={25} color='white' style={{ borderWidth: 0 }} />
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
@@ -143,7 +108,3 @@ const ChatBody = (props) => {
 }
 
 export default ChatBody;
-
-const style = StyleSheet.create({
-
-})

@@ -77,12 +77,65 @@ export const styles = StyleSheet.create({
         color: 'black',
         paddingHorizontal: 10,
         paddingVertical: 20,
-        backgroundColor: 'honeydew'
+        backgroundColor: 'honeydew',
+        fontSize: 18,
+        borderBottomColor: 'black',
+        borderBottomWidth: 0.5
     },
     buttonPosition: {
         position: 'absolute',
         bottom: 0,
         left: 0,
         right: 0
+    },
+    messageInputContainer: {
+        borderTopWidth: 0.5,
+        backgroundColor: '#e2e8f0',
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 16,
+        paddingVertical: 16,
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        left: 0,
+    },
+    messageInputField: {
+        flex: 1,
+        marginRight: 8,
+        paddingHorizontal: 20,
+        paddingVertical: 11,
+        backgroundColor: '#fff',
+        borderRadius: 15,
+        borderWidth: 1,
+        borderColor: '#ddd',
+    },
+    messageSend: {
+        borderRadius: 30,
+        width: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: "#00A693",
+        height: 50
+    },
+    chatContainer: {
+        flex: 1,
+        backgroundColor: '#f2f2f2',
+    },
+    chatTopBar: {
+        flexDirection: 'row',
+        backgroundColor: '#317873',
+        alignItems: 'center',
+        paddingVertical: 10
+    },
+    messageContent: {
+        flex: 1,
+        padding: 16,
+        marginBottom: 70
+    },
+    receiverName: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        color: 'white'
     }
 });
