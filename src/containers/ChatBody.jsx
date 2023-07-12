@@ -89,9 +89,9 @@ const ChatBody = (props) => {
                     data={selected}
                     renderItem={chatRender}
                     keyExtractor={(item) => item._id}
-                    onEndReachedThreshold={3}
-                    onContentSizeChange={() => messagesListRef.current.scrollToEnd({ animated: false })}
-                    style={{ maxHeight: 900 }}
+                    onEndReachedThreshold={0.5}
+                    onContentSizeChange={() => messagesListRef.current.scrollToEnd({ animated: true })}
+                    style={{ maxHeight: 880 }}
                 />
             </View>
 

@@ -170,19 +170,21 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         borderRadius: 10,
         borderWidth: 0.8,
-        padding: 10,
+        paddingVertical: 10,
+        paddingLeft: 16,
+        paddingRight: 20,
         marginVertical: 5,
         maxWidth: "80%",
     },
     bubbleSender: {
         alignSelf: 'flex-end',
         paddingVertical: 10,
-        borderRadius: 10,
         paddingRight: 16,
+        borderRadius: 10,
         paddingLeft: 20,
         backgroundColor: '#0d9488',
         borderWidth: 0.8,
-        maxWidth: '90%'
+        maxWidth: '80%'
     },
     resend: {
         position: "absolute",
