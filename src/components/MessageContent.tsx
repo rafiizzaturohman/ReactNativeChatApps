@@ -45,20 +45,19 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
     if (props.sent === true && props.id === data?.id) {
         return (
             <TouchableNativeFeedback onLongPress={() => setShowModal(true)}>
-                <View style={{ marginVertical: 6 }}>
-                    <View style={{
-                        paddingVertical: 10,
-                        borderRadius: 10,
-                        paddingHorizontal: 8,
-                        backgroundColor: '#0d9488',
-                        borderWidth: 1
-                    }}>
+                <View style={{
+                    alignSelf: 'flex-end',
+                    flexDirection: 'row',
+                    justifyContent: 'flex-end',
+                    marginVertical: 6,
+                }}>
+                    <View style={styles.bubbleSender}>
                         <View>
                             <Text style={{
                                 color: 'black',
                                 fontSize: 16,
                                 textAlign: 'right',
-                                letterSpacing: 1.15
+                                letterSpacing: 1.5
                             }}>{props.chat}</Text>
                         </View>
 
@@ -115,15 +114,15 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
         return (
             <View>
                 <View>
-                    <TouchableOpacity onPress={resendMessage}>
+                    <TouchableOpacity style={styles.resend} onPress={resendMessage}>
                         <Icon name="arrow-circle-right" size={20} color="#cbd5e1" />
 
                         <Text style={{
                             color: '#000',
                             fontSize: 16,
+                            letterSpacing: 1.08,
                             textAlign: 'right'
                         }}>{props.chat}</Text>
-
                         <View>
                             <Icon name="time" size={20} />
 
@@ -137,7 +136,7 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
         return (
             data?.sender === props.receiver ?
                 <View style={styles.receiver}>
-                    <View>
+                    <View style={styles.bubbleReceiver}>
                         <Text style={{
                             color: 'black',
                             fontSize: 16,
@@ -166,71 +165,24 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
         marginVertical: 10
     },
-    ButtonStyle: {
-        paddingHorizontal: 10,
-    },
-    containerSender: {
-        alignSelf: "flex-end",
-        flexDirection: "row",
-        justifyContent: "flex-end",
-        marginBottom: 10,
-        marginRight: 10,
-    },
-    containerReceiver: {
-        alignSelf: "flex-start",
-        flexDirection: "row",
-        justifyContent: "flex-start",
-        marginBottom: 10,
-        marginLeft: 10,
-    },
-    bubbleSender: {
-        alignSelf: "flex-end",
-        backgroundColor: "#DCF8C5",
-        borderRadius: 10,
-        padding: 10,
-        marginVertical: 5,
-        maxWidth: "80%",
-    },
     bubbleReceiver: {
         alignSelf: "flex-start",
         backgroundColor: "#fff",
         borderRadius: 10,
+        borderWidth: 0.8,
         padding: 10,
         marginVertical: 5,
         maxWidth: "80%",
     },
-    textSender: {
-        color: "#000",
-        fontSize: 16,
-        textAlign: "right",
-    },
-    textReceiver: {
-        color: "#000",
-        fontSize: 16,
-        textAlign: "left",
-        fontWeight: "bold",
-    },
-    timestampContainer: {
-        flexDirection: "row",
-        justifyContent: "flex-end",
-        alignItems: "center",
-        marginTop: 5,
-    },
-    timestamp: {
-        fontSize: 12,
-        color: "#B2B2B2",
-        marginRight: 5,
-        alignItems: "center",
-        flexDirection: "row",
-    },
-    timeIcon: {
-        marginLeft: 5,
-        fontSize: 20,
-        color: "#B2B2B2",
-    },
-    timestampText: {
-        fontSize: 12,
-        color: "#B2B2B2",
+    bubbleSender: {
+        alignSelf: 'flex-end',
+        paddingVertical: 10,
+        borderRadius: 10,
+        paddingRight: 16,
+        paddingLeft: 20,
+        backgroundColor: '#0d9488',
+        borderWidth: 0.8,
+        maxWidth: '90%'
     },
     resend: {
         position: "absolute",
@@ -238,12 +190,10 @@ const styles = StyleSheet.create({
         top: "40%",
     },
     receiver: {
-        marginVertical: 8,
-        borderWidth: 1,
-        borderRadius: 10,
-        paddingHorizontal: 10,
-        paddingVertical: 8,
-        backgroundColor: '#f1f5f9'
+        alignSelf: 'flex-start',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        marginVertical: 6,
     }
 });
 

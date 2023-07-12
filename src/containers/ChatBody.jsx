@@ -10,7 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { addChat, loadChat, removeChat, resendChat } from "../actions/chats";
 import Icon from "react-native-vector-icons/FontAwesome";
-import MessageContent from "../components/MessageContent";
+import MessageContents from "../components/MessageContent";
 import { styles } from "../styles/styles";
 
 class MemorizedMessageContents extends PureComponent {
@@ -18,7 +18,7 @@ class MemorizedMessageContents extends PureComponent {
         const { chat, id, receiver, sent, date, readstatus, deleteMessage, resendMessage } = this.props
 
         return (
-            <MessageContent
+            <MessageContents
                 chat={chat}
                 id={id}
                 receiver={receiver}
