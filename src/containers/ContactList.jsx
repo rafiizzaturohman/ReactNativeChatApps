@@ -4,7 +4,7 @@ import { loadContact, removeNotification } from '../actions/contacts';
 import { selectedChat } from '../actions/chats';
 import { request } from '../helpers/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ContactItem from '../components/ContactItem';
 import { styles } from '../styles/styles';
 
@@ -38,14 +38,18 @@ const ContactList = ({ formChat, navigation }) => {
         }
     }
 
-    const ContactRender = ({ item }) => {
+    const ContactRender = ({ item, index }) => {
+        const isOdd = index % 2 === 0;
+
         return (
-            <ContactItem key={item.id}
-                id={item.id}
-                count={item.count}
-                contact={item.username}
-                set={() => handleContactSelect(item.username, item._id)}
-            />
+            <View style={[style.item, isOdd && style.oddItem]}>
+                <ContactItem key={item.id}
+                    id={item.id}
+                    count={item.count}
+                    contact={item.username}
+                    set={() => handleContactSelect(item.username, item._id)}
+                />
+            </View>
         )
     }
 
@@ -69,3 +73,18 @@ const ContactList = ({ formChat, navigation }) => {
 
 
 export default ContactList;
+
+const style = StyleSheet.create({
+    item: {
+        backgroundColor: '#FFFFFF', // Default background color
+        color: 'black',
+        paddingVertical: 20,
+        paddingHorizontal: 1,
+        borderBottomColor: 'black',
+        borderBottomWidth: 0.5,
+        letterSpacing: 0.5
+    },
+    oddItem: {
+        backgroundColor: '#f3f4f6', // Background color for odd items
+    },
+})

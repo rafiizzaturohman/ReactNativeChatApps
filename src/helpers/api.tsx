@@ -38,4 +38,3 @@ export async function dataJSON(): Promise<any> {
         return null;
     }
 }
-

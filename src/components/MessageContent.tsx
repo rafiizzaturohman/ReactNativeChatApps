@@ -9,7 +9,6 @@ import {
     View,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface MessageContentProps {
     sent: boolean;
@@ -46,69 +45,44 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
     if (props.sent === true && props.id === data?.id) {
         return (
             <TouchableNativeFeedback onLongPress={() => setShowModal(true)}>
-                <View style={{
-                    marginVertical: 8,
-                    borderRadius: 10,
-                    paddingHorizontal: 10,
-                    paddingVertical: 8,
-                }}>
-                    <View>
-                        <Text style={{
-                            color: '#000',
-                            fontSize: 16,
-                            textAlign: 'right',
-                        }}>{props.chat}</Text>
-                    </View>
-
+                <View style={{ marginVertical: 6 }}>
                     <View style={{
-                        flexDirection: 'row'
+                        paddingVertical: 10,
+                        borderRadius: 10,
+                        paddingHorizontal: 8,
+                        backgroundColor: '#0d9488',
+                        borderWidth: 1
                     }}>
-                        {props.readstatus === true ? (
-                            <Icon name="check" size={20} color="black" />
-                        ) : (
-                            <Icon name="check" size={20} color="white" />
-                        )}
+                        <View>
+                            <Text style={{
+                                color: 'black',
+                                fontSize: 16,
+                                textAlign: 'right',
+                                letterSpacing: 1.15
+                            }}>{props.chat}</Text>
+                        </View>
 
-                        <Text style={{ marginLeft: 6 }}>{props.date}</Text>
+                        <View style={{
+                            flexDirection: 'row'
+                        }}>
+                            {props.readstatus === true ? (
+                                <Icon name="check" size={20} color="black" />
+                            ) : (
+                                <Icon name="check" size={20} color="white" />
+                            )}
+
+                            <Text style={{ marginLeft: 6 }}>{props.date}</Text>
+                        </View>
                     </View>
 
                     <Modal visible={showModal}>
-                        <View style={{
-                            flex: 1,
-                            justifyContent: 'center',
-                            paddingHorizontal: 40,
-                        }}>
-                            <View style={{
-                                backgroundColor: '#BACDDB',
-                                height: '20%',
-                                borderRadius: 10,
-                                borderWidth: 1
-                            }}>
-                                <View style={{
-                                    height: '100%',
-                                    width: '100%',
-                                    paddingVertical: 20,
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                }}>
-                                    <Text style={{
-                                        textAlign: 'center',
-                                        color: 'black',
-                                        fontSize: 20
-                                    }}>Are you sure want to delete this?  chat?</Text>
+                        <View style={modalStyle.container}>
+                            <View style={modalStyle.bgContainer}>
+                                <View style={modalStyle.container2}>
+                                    <Text style={modalStyle.titleText}>Are you sure want to delete this?  chat?</Text>
 
                                     <View style={styles.ModalButton}>
-                                        <TouchableOpacity style={{
-                                            height: 40,
-                                            width: '18%',
-                                            borderWidth: 1,
-                                            borderRadius: 10,
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            backgroundColor: '#be123c',
-                                            marginVertical: 8,
-                                            marginHorizontal: 5
-                                        }} onPress={deleteMessage}>
+                                        <TouchableOpacity style={modalStyle.delButton} onPress={deleteMessage}>
                                             <Text style={{
                                                 textAlign: 'center',
                                                 color: 'white',
@@ -116,17 +90,7 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
                                             }}>Delete</Text>
                                         </TouchableOpacity>
 
-                                        <TouchableOpacity style={{
-                                            height: 40,
-                                            width: '18%',
-                                            borderWidth: 1,
-                                            borderRadius: 10,
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            backgroundColor: '#0f766e',
-                                            marginVertical: 8,
-                                            marginHorizontal: 5
-                                        }} onPress={() => setShowModal(false)}>
+                                        <TouchableOpacity style={modalStyle.cancButton} onPress={() => setShowModal(false)}>
                                             <Text style={{
                                                 textAlign: 'center',
                                                 color: 'white',
@@ -166,18 +130,12 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
     } else {
         return (
             data?.sender === props.receiver ?
-                <View style={{
-                    marginVertical: 8,
-                    borderWidth: 1,
-                    borderRadius: 10,
-                    paddingHorizontal: 10,
-                    paddingVertical: 8,
-                }}>
+                <View style={styles.receiver}>
                     <View>
                         <Text style={{
-                            color: '#000',
+                            color: 'black',
                             fontSize: 16,
-                            textAlign: 'left'
+                            letterSpacing: 1.1
                         }}>{props.chat}</Text>
 
                         <View>
@@ -270,4 +228,62 @@ const styles = StyleSheet.create({
         left: -50,
         top: "40%",
     },
+    receiver: {
+        marginVertical: 8,
+        borderWidth: 1,
+        borderRadius: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 8,
+        backgroundColor: '#f1f5f9'
+    }
 });
+
+
+const modalStyle = StyleSheet.create({
+    container: {
+        flex: 1,
+        
+        justifyContent: 'center',
+        paddingHorizontal: 40,
+    },
+    bgContainer: {
+        backgroundColor: '#BACDDB',
+        height: '20%',
+        borderRadius: 10,
+        borderWidth: 1
+    },
+    container2: {
+        height: '100%',
+        width: '100%',
+        paddingVertical: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    titleText: {
+        textAlign: 'center',
+        color: 'black',
+        fontSize: 20
+    },
+    delButton: {
+        height: 40,
+        width: '18%',
+        borderWidth: 1,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#be123c',
+        marginVertical: 8,
+        marginHorizontal: 5
+    },
+    cancButton: {
+        height: 40,
+        width: '18%',
+        borderWidth: 1,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#0f766e',
+        marginVertical: 8,
+        marginHorizontal: 5
+    }
+})

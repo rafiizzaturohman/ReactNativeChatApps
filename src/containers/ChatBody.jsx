@@ -69,7 +69,7 @@ const ChatBody = (props) => {
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS == "android" ? "padding" : "height"}
-            keyboardVerticalOffset={Platform.OS == "android" ? 0 : 25}
+            keyboardVerticalOffset={Platform.OS == "android" ? -200 : 10}
             enabled={Platform.OS === "android" ? true : false}
             style={styles.chatContainer}
         >
@@ -89,8 +89,9 @@ const ChatBody = (props) => {
                     data={selected}
                     renderItem={chatRender}
                     keyExtractor={(item) => item._id}
-                    onEndReachedThreshold={0.5}
+                    onEndReachedThreshold={3}
                     onContentSizeChange={() => messagesListRef.current.scrollToEnd({ animated: false })}
+                    style={{ maxHeight: 900 }}
                 />
             </View>
 

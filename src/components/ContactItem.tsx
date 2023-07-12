@@ -9,16 +9,31 @@ interface ContactItemProps {
     set: () => void;
 }
 
-const ContactItem: React.FC<ContactItemProps> = (props) => {
+const ContactItem: React.FC<ContactItemProps> = (props, index) => {
     return (
         <TouchableOpacity onPress={props.set}>
-            <Text style={styles.contactName}>{props.contact}</Text>
+            <View style={{
+                paddingHorizontal: 10,
+            }}>
+                <View style={{
+                    flex: 1,
+                    justifyContent: 'space-between'
+                }}>
+                    <Text style={{
+                        fontSize: 18,
+                    }}>{props.contact}</Text>
 
-            {props.count > 0 && (
-                <View>
-                    <Text>{props.count}</Text>
+                    {props.count > 0 && (
+                        <View style={{
+                            backgroundColor: 'red',
+                            borderWidth: 1,
+                            borderRadius: 100,
+                        }}>
+                            <Text>{props.count}</Text>
+                        </View>
+                    )}
                 </View>
-            )}
+            </View>
         </TouchableOpacity>
     )
 }

@@ -60,7 +60,8 @@ export const styles = StyleSheet.create({
         backgroundColor: '#317873',
         fontWeight: 'bold',
         color: 'honeydew',
-        fontSize: 18
+        fontSize: 18,
+        letterSpacing: 1
     },
     logOutButton: {
         height: 40,
@@ -77,10 +78,10 @@ export const styles = StyleSheet.create({
         color: 'black',
         paddingHorizontal: 10,
         paddingVertical: 20,
-        backgroundColor: 'honeydew',
-        fontSize: 18,
+        backgroundColor: '#ccfbf1',
         borderBottomColor: 'black',
-        borderBottomWidth: 0.5
+        borderBottomWidth: 0.5,
+        letterSpacing: 0.5
     },
     buttonPosition: {
         position: 'absolute',
@@ -124,7 +125,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#317873',
         alignItems: 'center',
-        paddingVertical: 10
+        paddingVertical: 12
     },
     messageContent: {
         flex: 1,
@@ -132,7 +133,7 @@ export const styles = StyleSheet.create({
     },
     receiverName: {
         fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: 20,
         color: 'white'
     }
 });

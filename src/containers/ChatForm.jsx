@@ -75,7 +75,7 @@ const ChatForm = ({ navigation }) => {
                 <ChatBody name={name} back={() => setChat(false)} message={message} setMessage={setMessage} />
                 :
                 <Fragment>
-                    <Text style={styles.headerTextChat}>Contact</Text>
+                    <Text style={styles.headerTextChat}>CONTACT</Text>
 
                     <ContactList
                         formChat={handleFormChat}
