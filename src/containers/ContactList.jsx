@@ -76,7 +76,7 @@ export default ContactList;
 
 const style = StyleSheet.create({
     item: {
-        backgroundColor: '#FFFFFF', // Default background color
+        backgroundColor: '#f8fafc',
         color: 'black',
         paddingVertical: 20,
         paddingHorizontal: 1,
@@ -85,6 +85,6 @@ const style = StyleSheet.create({
         letterSpacing: 0.5
     },
     oddItem: {
-        backgroundColor: '#f3f4f6', // Background color for odd items
+        backgroundColor: '#f0fdfa', 
     },
 })

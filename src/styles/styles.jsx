@@ -71,7 +71,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         textAlign: 'center',
         backgroundColor: '#0f766e',
-        marginVertical: 10,
+        marginVertical: 14,
         marginHorizontal: 10
     },
     contactName: {
@@ -84,6 +84,8 @@ export const styles = StyleSheet.create({
         letterSpacing: 0.5
     },
     buttonPosition: {
+        borderTopWidth: 1,
+        backgroundColor: '#cbd5e1',
         position: 'absolute',
         bottom: 0,
         left: 0,

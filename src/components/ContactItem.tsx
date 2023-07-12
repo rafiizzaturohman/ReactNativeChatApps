@@ -1,6 +1,5 @@
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { styles } from "../styles/styles";
 
 interface ContactItemProps {
     selector: string;
@@ -9,7 +8,7 @@ interface ContactItemProps {
     set: () => void;
 }
 
-const ContactItem: React.FC<ContactItemProps> = (props, index) => {
+const ContactItem: React.FC<ContactItemProps> = (props) => {
     return (
         <TouchableOpacity onPress={props.set}>
             <View style={{

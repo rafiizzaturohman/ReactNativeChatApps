@@ -63,6 +63,7 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
                         </View>
 
                         <View style={{
+                            flex: 1,
                             flexDirection: 'row'
                         }}>
                             {props.readstatus === true ? (
@@ -71,7 +72,12 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
                                 <Icon name="check" size={20} color="white" />
                             )}
 
-                            <Text style={{ marginLeft: 6 }}>{props.date}</Text>
+                            <Text style={{
+                                flexWrap: 'nowrap',
+                                paddingLeft: 6,
+                                paddingRight: 7,
+                                letterSpacing: 1.1
+                            }}>{props.date}</Text>
                         </View>
                     </View>
 
@@ -79,7 +85,7 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
                         <View style={modalStyle.container}>
                             <View style={modalStyle.bgContainer}>
                                 <View style={modalStyle.container2}>
-                                    <Text style={modalStyle.titleText}>Are you sure want to delete this?  chat?</Text>
+                                    <Text style={modalStyle.titleText}>Are you sure want to delete this? chat </Text>
 
                                     <View style={styles.ModalButton}>
                                         <TouchableOpacity style={modalStyle.delButton} onPress={deleteMessage}>
@@ -103,7 +109,7 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
                         </View>
                     </Modal>
                 </View>
-            </TouchableNativeFeedback>
+            </TouchableNativeFeedback >
         )
     } else if (props.sent === false && data?.sender === data?.id) {
         return (
@@ -139,7 +145,10 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
                         }}>{props.chat}</Text>
 
                         <View>
-                            <Text style={{ textAlign: 'right' }}>{props.date}</Text>
+                            <Text style={{
+                                textAlign: 'right',
+                                letterSpacing: 1.1
+                            }}>{props.date}</Text>
                         </View>
                     </View>
                 </View>
@@ -242,7 +251,7 @@ const styles = StyleSheet.create({
 const modalStyle = StyleSheet.create({
     container: {
         flex: 1,
-        
+
         justifyContent: 'center',
         paddingHorizontal: 40,
     },
@@ -262,7 +271,8 @@ const modalStyle = StyleSheet.create({
     titleText: {
         textAlign: 'center',
         color: 'black',
-        fontSize: 20
+        fontSize: 20,
+        flexWrap: 'nowrap'
     },
     delButton: {
         height: 40,
