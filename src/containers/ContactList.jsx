@@ -43,9 +43,10 @@ const ContactList = ({ formChat, navigation }) => {
 
         return (
             <View style={[style.item, isOdd && style.oddItem]}>
-                <ContactItem key={item.id}
+                <ContactItem
+                    key={item.id}
                     id={item.id}
-                    count={item.count}
+                    count={item.unreadCount}
                     contact={item.username}
                     set={() => handleContactSelect(item.username, item._id)}
                 />
@@ -85,6 +86,6 @@ const style = StyleSheet.create({
         letterSpacing: 0.5
     },
     oddItem: {
-        backgroundColor: '#f0fdfa', 
+        backgroundColor: '#f0fdfa',
     },
 })

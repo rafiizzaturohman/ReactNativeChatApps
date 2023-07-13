@@ -36,15 +36,14 @@ export const styles = StyleSheet.create({
         width: '32%',
         borderWidth: 1,
         borderRadius: 12,
-        alignItems: 'center',
-        textAlign: 'center',
+        justifyContent: 'center',
         backgroundColor: '#0f766e',
         marginVertical: 10
     },
     buttonText: {
         color: 'honeydew',
         fontWeight: 'bold',
-        margin: 7,
+        textAlign: 'center',
         fontSize: 16,
     },
     chatContainer: {
@@ -52,25 +51,25 @@ export const styles = StyleSheet.create({
         backgroundColor: '#f2f2f2',
     },
     headerTextChat: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
+        // alignItems: 'center',
+        // textAlign: 'center',
         width: '100%',
-        padding: 16,
+        paddingVertical: 16,
+        paddingHorizontal: 20,
         backgroundColor: '#317873',
         fontWeight: 'bold',
         color: 'honeydew',
-        fontSize: 18,
-        letterSpacing: 1
+        fontSize: 17,
+        letterSpacing: 0.8
     },
     logOutButton: {
         height: 40,
         width: '20%',
         borderWidth: 1,
         borderRadius: 12,
-        alignItems: 'center',
         textAlign: 'center',
         backgroundColor: '#0f766e',
+        justifyContent: 'center',
         marginVertical: 14,
         marginHorizontal: 10
     },
@@ -127,7 +126,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#317873',
         alignItems: 'center',
-        paddingVertical: 12
+        paddingVertical: 16
     },
     messageContent: {
         flex: 1,

@@ -33,9 +33,9 @@ class MemorizedMessageContents extends PureComponent {
 };
 
 const ChatBody = (props) => {
-    const selected = useSelector((state) => state.chats.data)
     const dispatch = useDispatch()
     const messagesListRef = useRef(null)
+    const selected = useSelector((state) => state.chats.selectedChat)
 
     useEffect(() => {
         dispatch(loadChat())
@@ -69,12 +69,12 @@ const ChatBody = (props) => {
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS == "android" ? "padding" : "height"}
-            keyboardVerticalOffset={Platform.OS == "android" ? -200 : 10}
+            keyboardVerticalOffset={Platform.OS == "android" ? -212 : 10}
             enabled={Platform.OS === "android" ? true : false}
             style={styles.chatContainer}
         >
             <View style={styles.chatTopBar}>
-                <TouchableOpacity onPress={props.back} style={{ marginHorizontal: 18 }}>
+                <TouchableOpacity onPress={props.back} style={{ marginLeft: 18, marginRight: 16 }}>
                     <Icon name="arrow-left" size={20} color='white' />
                 </TouchableOpacity>
 
@@ -100,7 +100,7 @@ const ChatBody = (props) => {
                     style={styles.messageInputField} />
 
                 <TouchableOpacity onPress={submitChat} style={styles.messageSend}>
-                    <Icon name="paper-plane" size={25} color='white' style={{ borderWidth: 0 }} />
+                    <Icon name="send" size={25} color='white' style={{ borderWidth: 0 }} />
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>

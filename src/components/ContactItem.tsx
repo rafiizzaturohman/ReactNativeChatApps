@@ -16,17 +16,21 @@ const ContactItem: React.FC<ContactItemProps> = (props) => {
             }}>
                 <View style={{
                     flex: 1,
+                    flexDirection: 'row',
                     justifyContent: 'space-between'
                 }}>
                     <Text style={{
-                        fontSize: 18,
-                    }}>{props.contact}</Text>
+                        fontSize: 17,
+                    }} numberOfLines={1} ellipsizeMode="clip">{props.contact}</Text>
 
                     {props.count > 0 && (
                         <View style={{
                             backgroundColor: 'red',
-                            borderWidth: 1,
+                            borderWidth: 0.5,
                             borderRadius: 100,
+                            width: 30,
+                            justifyContent: 'center',
+                            alignItems: 'center',
                         }}>
                             <Text>{props.count}</Text>
                         </View>
