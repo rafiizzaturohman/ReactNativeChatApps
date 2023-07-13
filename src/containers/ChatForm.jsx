@@ -7,7 +7,7 @@ import { dataJSON } from '../helpers/api';
 import ChatBody from './ChatBody';
 import socket from '../socket';
 import { styles } from '../styles/styles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ChatForm = ({ navigation }) => {
     const dispatch = useDispatch()
