@@ -112,10 +112,15 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
         )
     } else if (props.sent === false && data?.sender === data?.id) {
         return (
-            <View>
-                <View>
-                    <TouchableOpacity style={styles.resend} onPress={resendMessage}>
-                        <Icon name="arrow-circle-right" size={20} color="#cbd5e1" />
+            <TouchableOpacity style={styles.resend} onPress={resendMessage}>
+                <View style={{
+                    alignSelf: 'flex-end',
+                    flexDirection: 'row',
+                    justifyContent: 'flex-end',
+                    marginVertical: 6,
+                }}>
+                    <View style={styles.bubbleSender}>
+                        {/* <Icon name="arrow-circle-right" size={20} color="#cbd5e1" /> */}
 
                         <Text style={{
                             color: '#000',
@@ -123,18 +128,21 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
                             letterSpacing: 1.08,
                             textAlign: 'right'
                         }}>{props.chat}</Text>
+
                         <View>
-                            <Icon name="time" size={20} />
+                            {/* <Icon name="time" size={20} /> */}
 
                             <Text>{props.date}</Text>
                         </View>
-                    </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         );
     } else {
         return (
-            data?.sender === props.receiver ?
+            data?.sender !== props.receiver ?
+                null
+                :
                 <View style={styles.receiver}>
                     <View style={styles.bubbleReceiver}>
                         <Text style={{
@@ -151,8 +159,6 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
                         </View>
                     </View>
                 </View>
-                :
-                null
         )
     }
 };
