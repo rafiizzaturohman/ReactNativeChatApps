@@ -21,7 +21,7 @@ const ChatForm = ({ navigation }) => {
         parseDataConnect()
 
         socket.on('connect', () => {
-            socket.emit('join room', JSON.parse(AsyncStorage.getItem('user'))?.username)
+            socket.emit('join room', dataUsername?.username)
             setIsConnected(true);
         });
 
