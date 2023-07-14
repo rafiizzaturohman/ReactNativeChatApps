@@ -147,7 +147,7 @@ const MessageContent: React.FC<MessageContentProps> = (props) => {
                 :
                 <View style={styles.receiver}>
                     <View style={styles.bubbleReceiver}>
-                        <Text style={styles.chatReceiverText} numberOfLines={1} ellipsizeMode="clip">{props.chat}</Text>
+                        <Text style={styles.chatReceiverText} numberOfLines={5} ellipsizeMode="tail">{props.chat}</Text>
 
                         <View>
                             <Text style={{
